@@ -19,6 +19,7 @@ function paymenttokens_civicrm_tokenValues(&$values, $cids, $job = NULL, $tokens
     $contributions = civicrm_api3('Contribution', 'get', [
       'sequential' => 1,
       'contact_id' => $cid,
+      'contribution_status_id' => ['!=' => "Pending"],
       'options' => ['sort' => "receive_date DESC"],
     ]);
     if ($contributions['count']) {
